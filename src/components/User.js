@@ -13,12 +13,17 @@ export class User extends React.Component {
         this.props.add(this.props.personas)
     }
 
+    //will remove the friend that was selected
+    removerFromList() {
+        this.props.remove(this.props.personasSelected)
+    }
+
     //will render the remove button if the friend is in the selected list    
     renderRemove = () => {
         if (this.props.isRemoval) {
             return (<Button basic color='green' onClick={this.addToList}> Add to List </Button>)
         } else {
-            return (<Button basic color='red'> Remove from List </Button>)
+            return (<Button basic color='red' onClick={ this.removerFromList }> Remove from List </Button>)
         }
     };
 
@@ -26,7 +31,7 @@ export class User extends React.Component {
 
     render() {
 
-        const { personas, isRemoval } = this.props;
+        const { personas, isRemoval , personasSelected } = this.props;
     
 
         return (
@@ -51,8 +56,7 @@ export class User extends React.Component {
                     </Card.Group>
                     :
                     <Card.Group>
-                        {/* personas && will prevent error anytime that the personas is undefined */}
-                        {personas && personas.map(person => (
+                        {personasSelected && personasSelected.map(person => (
                             <Card raised centered key={person.login.uuid} >
                                 <Card.Content>
                                     <Image floated='right' avatar src={person.picture.large} />

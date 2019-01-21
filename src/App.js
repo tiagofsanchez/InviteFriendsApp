@@ -7,11 +7,18 @@ import { UserSelectedList } from './components/UserSelectedList';
 
 
 class App extends Component {
-  state = {
-    loading: true,
-    personas: [],
-    personasSelected: [],
+  constructor(props) {
+    super (props);
+    this.state = {
+      loading: true,
+      personas: [],
+      personasSelected: [],
+    }
+
+    this.onAdd=this.onAdd.bind(this);
+
   }
+
 
   componentDidMount() {
     FetchRandom.users()
@@ -26,7 +33,6 @@ class App extends Component {
     } else {
       newPersonasSelected.push(person);
       this.setState({personasSelected : newPersonasSelected});
-      console.log(this.state.personasSelected);
     }
   };
 
@@ -39,18 +45,20 @@ class App extends Component {
       <div className="App">
 
         <div className="SearchBar" >
+
         </div>
         
         <div className="SearchList">
+          
           {loading ?
             <div >loading...</div>
             :
-            <UserSearchList personas={personas} add={this.onAdd} />
+            <UserSearchList personas={ personas } add={ this.onAdd } />
             
           }
         </div>
         <div className = "SelectedList" >
-          <UserSelectedList personasSelected={ personasSelected } />
+          {/* <UserSelectedList personasSelected={ personasSelected } /> */}
         </div>
       
       </div>

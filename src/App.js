@@ -1,25 +1,58 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
+import FetchRandom from './util/FetchRandom'
+import { UserSearchList } from './components/UserSearchList';
+import { UserSelectedList } from './components/UserSelectedList';
+
 
 class App extends Component {
+  state = {
+    loading: true,
+    personas: [],
+    personasSelected: [],
+  }
+
+  componentDidMount() {
+    FetchRandom.users()
+      .then(friends => this.setState({ personas: friends, loading: false }))
+  };
+
+  //will add your friend into the new list that the user will used to contact them after selecting
+  onAdd(person) {
+    let newPersonasSelected = this.state.personasSelected;
+    if (this.state.personasSelected.find(friend => friend.login.uuid === person.login.uuid )) {
+      return;
+    } else {
+      newPersonasSelected.push(person);
+      this.setState({personasSelected : newPersonasSelected});
+      console.log(this.state.personasSelected);
+    }
+  };
+
+
   render() {
+
+    const { personas, loading , personasSelected } = this.state;
+    
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+
+        <div className="SearchBar" >
+        </div>
+        
+        <div className="SearchList">
+          {loading ?
+            <div >loading...</div>
+            :
+            <UserSearchList personas={personas} add={this.onAdd} />
+            
+          }
+        </div>
+        <div className = "SelectedList" >
+          <UserSelectedList personasSelected={ personasSelected } />
+        </div>
+      
       </div>
     );
   }

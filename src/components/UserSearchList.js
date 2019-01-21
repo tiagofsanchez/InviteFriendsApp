@@ -1,5 +1,6 @@
 import React from 'react';
 import { User } from './User';
+import './UserSearchList.css';
 
 
 export class UserSearchList extends React.Component {
@@ -8,7 +9,7 @@ export class UserSearchList extends React.Component {
         const { personas , add } = this.props;
 
         return (
-            <div>
+            <div className="UserSearchList">
                 <User personas={personas} isRemoval={true} add = { add } />
             </div> 
         )

@@ -1,0 +1,17 @@
+.UserSearchList {
+    width: 100%;
+    height: 950px;
+    overflow-y: scroll;
+}
+  
+  ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+  }
+  
+  @media only screen and (max-width: 1020px) {
+    .SearchResults {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }

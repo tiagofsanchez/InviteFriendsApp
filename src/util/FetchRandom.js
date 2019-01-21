@@ -3,7 +3,7 @@ const FetchRandom = {
 
     //fetching # of users that are random
     users() {
-        const url = 'https://api.randomuser.me/?results=2';
+        const url = 'https://api.randomuser.me/?results=100';
         return fetch(url)
             .then(res => res.json())
             .then(data => data.results)

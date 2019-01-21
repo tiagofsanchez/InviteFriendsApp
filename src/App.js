@@ -5,7 +5,7 @@ import FetchRandom from './util/FetchRandom'
 import { UserSearchList } from './components/UserSearchList';
 import { UserSelectedList } from './components/UserSelectedList';
 
-import { Grid, Segment , Header, Container } from 'semantic-ui-react';
+import { Grid, Segment , Header } from 'semantic-ui-react';
 
 
 class App extends Component {
@@ -79,13 +79,7 @@ class App extends Component {
             </Segment.Group>
           </Grid.Column>
           <Grid.Column width={4}>
-           
-            {loading ?
-              <div >loading...</div>
-              :
-              <UserSearchList personas={personas} add={this.onAdd} />
-
-            }
+              <UserSelectedList personasSelected={ personasSelected } />
           </Grid.Column>
         </Grid>
       </div>

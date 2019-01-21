@@ -13,27 +13,15 @@ export class User extends React.Component {
         this.props.add(this.props.personas)
     }
 
-    //will remove the friend that was selected
-    removerFromList() {
+    //will remove the friend that was selected from the selected list
+    removeFromList() {
         this.props.remove(this.props.personasSelected)
     }
-
-    //will render the remove button if the friend is in the selected list    
-    renderRemove = () => {
-        if (this.props.isRemoval) {
-            return (<Button basic color='green' onClick={this.addToList}> Add to List </Button>)
-        } else {
-            return (<Button basic color='red' onClick={ this.removerFromList }> Remove from List </Button>)
-        }
-    };
-
-    
-
+     
     render() {
 
         const { personas, isRemoval , personasSelected } = this.props;
     
-
         return (
             <div>
                 {isRemoval ?
@@ -48,7 +36,7 @@ export class User extends React.Component {
                                 </Card.Content>
                                 <Card.Content extra>
                                     <div className='ui two buttons'>
-                                        {this.renderRemove()}
+                                    <Button basic color='green' onClick={this.addToList}> Add to List </Button>
                                     </div>
                                 </Card.Content>
                             </Card>
@@ -64,7 +52,7 @@ export class User extends React.Component {
                                 </Card.Content>
                                 <Card.Content extra>
                                     <div className='ui two buttons'>
-                                        {this.renderRemove()}
+                                    <Button basic color='red' onClick={ this.removerFromList }> Remove from List </Button>
                                     </div>
                                 </Card.Content>
                             </Card>

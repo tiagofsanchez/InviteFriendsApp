@@ -6,11 +6,11 @@ export class UserSelectedList extends React.Component {
     
     render () {
 
-        const { personas , personasSelected } = this.props;
+        const { personasSelected } = this.props;
 
         return (
             <div>
-                <User personas={personas} personasSelected={ personasSelected } />
+                <User personasSelected={ personasSelected }  isRemoval={ false }/>
             </div>
         )
     }

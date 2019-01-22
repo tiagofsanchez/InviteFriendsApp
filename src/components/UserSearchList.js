@@ -6,11 +6,11 @@ import './UserSearchList.css';
 export class UserSearchList extends React.Component {
     render () {
         
-        const { personas , add } = this.props;
+        const { personas , add , isRemoval } = this.props;
 
         return (
             <div className="UserSearchList">
-                <User personas={personas} isRemoval={true} add = { add } />
+                <User personas={personas} isRemoval={isRemoval} add = {add} />
             </div> 
         )
     }

@@ -16,10 +16,9 @@ class App extends Component {
       personas: [],
       personasSelected: [],
     }
-
     this.onAdd = this.onAdd.bind(this);
-
   }
+
 
 
   componentDidMount() {
@@ -27,16 +26,18 @@ class App extends Component {
       .then(friends => this.setState({ personas: friends, loading: false }))
   };
 
-  //will add your friend into the new list that the user will used to contact them after selecting
+  //will add your friend into the new list that the user will used to contact them after selecting (nao estou a fazer 1 copia)
   onAdd(person) {
-    let newPersonasSelected = this.state.personasSelected;
-    if (this.state.personasSelected.find(friend => friend.login.uuid === person.login.uuid)) {
+    const { personasSelected } = this.state
+
+    if (personasSelected.find(friend => friend.login.uuid === person.login.uuid)) {
       return;
     } else {
-      newPersonasSelected.push(person);
-      this.setState({ personasSelected: newPersonasSelected });
+      this.setState({ personasSelected: [...personasSelected, person] })
     }
   };
+
+  //onRemove (array.prototype.reduce)
 
 
   render() {
@@ -71,15 +72,15 @@ class App extends Component {
                 {loading ?
                   <div >loading...</div>
                   :
-                  <UserSearchList personas={personas} add={this.onAdd} />
-
+                  <UserSearchList personas={personas} add={this.onAdd} isRemoval={false}/>
+                  /* Mudar para UserLis */
                 }
               </div>
             </Segment>
             </Segment.Group>
           </Grid.Column>
           <Grid.Column width={4}>
-              <UserSelectedList personasSelected={ personasSelected } />
+              <UserSelectedList personasSelected = { personasSelected }  isRemoval={true}/>
           </Grid.Column>
         </Grid>
       </div>

@@ -5,7 +5,7 @@ import FetchRandom from './util/FetchRandom'
 import { UserSearchList } from './components/UserSearchList';
 import { UserSelectedList } from './components/UserSelectedList';
 
-import { Grid, Segment , Header } from 'semantic-ui-react';
+import { Grid, Segment , Header, Container } from 'semantic-ui-react';
 
 
 class App extends Component {
@@ -17,6 +17,7 @@ class App extends Component {
       personasSelected: [],
     }
     this.onAdd = this.onAdd.bind(this);
+    this.onRemove = this.onRemove.bind(this);
   }
 
 
@@ -30,15 +31,17 @@ class App extends Component {
   onAdd(person) {
     const { personasSelected } = this.state
     if (personasSelected.find(friend => friend.login.uuid === person.login.uuid)) {
-      
+      return;
     } else {
       this.setState({ personasSelected: [...personasSelected, person] })
-      
     }
   };
 
-  //onRemove (array.prototype.reduce)
-
+  //onRemove (array.prototype.reduce or filter, decided to go with filter)
+  onRemove(person) {
+    const { personasSelected } = this.state
+    this.setState({personasSelected: personasSelected.filter(removePerson => removePerson.login.uuid !== person.login.uuid)})
+  }
 
   render() {
 
@@ -49,6 +52,7 @@ class App extends Component {
 
         <Grid>
           <Grid.Column width={3}>
+          
             <Segment.Group>
               <Segment>
                 <Header as='h1' className="SearchBar" >
@@ -59,12 +63,13 @@ class App extends Component {
                 SearchBar
               </Segment>
             </Segment.Group>
+           
           </Grid.Column>
           <Grid.Column width={9}>
             <Segment.Group raised>
             <Segment color='blue'>
               <Header as='h1' color='blue'>
-                Returning the list of friends you searched for
+                the list of friends you searched for
               </Header>
             </Segment>
             <Segment>
@@ -83,11 +88,11 @@ class App extends Component {
             <Segment.Group>
               <Segment color='blue'>
                 <Header as='h1' color='blue'>
-                  the list
+                  the party list
               </Header>
               </Segment>
               <Segment>
-              <UserSelectedList personasSelected={personasSelected} isRemoval={true} />
+              <UserSelectedList personasSelected={personasSelected} remove={this.onRemove} isRemoval={true} />
               </Segment>
             </Segment.Group>
           </Grid.Column>

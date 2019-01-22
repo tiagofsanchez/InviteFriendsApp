@@ -44,8 +44,6 @@ export class User extends React.Component {
                         </Card.Content>
                     </Card>
                 </Card.Group>
-
-
             </div>
         )
     }

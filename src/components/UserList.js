@@ -5,9 +5,8 @@ export class UserList extends React.Component {
 
     render () {
 
-        const { personas , add , isRemoval } = this.props;
+        const { personas , add , isRemoval , remove } = this.props;
 
-        debugger
         return (
             <div> 
                 {personas && personas.map(person => (
@@ -15,6 +14,7 @@ export class UserList extends React.Component {
                     key={person.login.uuid}
                     person={person}
                     add={add}
+                    remove={remove}
                     isRemoval={isRemoval}
                     />
                 ))}

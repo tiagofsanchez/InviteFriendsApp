@@ -1,6 +1,6 @@
 import React from 'react';
-import { User } from './User';
 import './UserSearchList.css';
+import { UserList } from './UserList';
 
 
 export class UserSearchList extends React.Component {
@@ -10,7 +10,7 @@ export class UserSearchList extends React.Component {
 
         return (
             <div className="UserSearchList">
-                <User personas={personas} isRemoval={isRemoval} add = {add} />
+                <UserList personas={personas} isRemoval={isRemoval} add = {add} />
             </div> 
         )
     }

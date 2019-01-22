@@ -29,11 +29,11 @@ class App extends Component {
   //will add your friend into the new list that the user will used to contact them after selecting (nao estou a fazer 1 copia)
   onAdd(person) {
     const { personasSelected } = this.state
-
     if (personasSelected.find(friend => friend.login.uuid === person.login.uuid)) {
-      return;
+      
     } else {
       this.setState({ personasSelected: [...personasSelected, person] })
+      
     }
   };
 
@@ -80,7 +80,7 @@ class App extends Component {
             </Segment.Group>
           </Grid.Column>
           <Grid.Column width={4}>
-              <UserSelectedList personasSelected = { personasSelected }  isRemoval={true}/>
+              <UserSelectedList personasSelected={personasSelected}  isRemoval={true}/>
           </Grid.Column>
         </Grid>
       </div>

@@ -63,8 +63,8 @@ class App extends Component {
           <Grid.Column width={9}>
             <Segment.Group raised>
             <Segment color='blue'>
-              <Header as='h1' textAlign='center' color='blue'>
-                Returning the list of friends you searched
+              <Header as='h1' color='blue'>
+                Returning the list of friends you searched for
               </Header>
             </Segment>
             <Segment>
@@ -80,7 +80,16 @@ class App extends Component {
             </Segment.Group>
           </Grid.Column>
           <Grid.Column width={4}>
-              <UserSelectedList personasSelected={personasSelected}  isRemoval={true}/>
+            <Segment.Group>
+              <Segment color='blue'>
+                <Header as='h1' color='blue'>
+                  the list
+              </Header>
+              </Segment>
+              <Segment>
+              <UserSelectedList personasSelected={personasSelected} isRemoval={true} />
+              </Segment>
+            </Segment.Group>
           </Grid.Column>
         </Grid>
       </div>

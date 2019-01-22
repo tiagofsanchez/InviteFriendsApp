@@ -7,6 +7,7 @@ export class UserList extends React.Component {
 
         const { personas , add , isRemoval } = this.props;
 
+        debugger
         return (
             <div> 
                 {personas && personas.map(person => (
